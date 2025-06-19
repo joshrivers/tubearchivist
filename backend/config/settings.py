@@ -236,3 +236,29 @@ SPECTACULAR_SETTINGS = {
     "VERSION": TA_VERSION,
     "SERVE_INCLUDE_SCHEMA": False,
 }
+
+# Optionally enable messy debug logging for troubleshooting purposes.
+if (environ.get("DJANGO_LOG_LEVEL")) == "DEBUG":
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "handlers": {
+            "console": {
+                "class": "logging.StreamHandler",
+            },
+        },
+        "root": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+        },
+        "loggers": {
+            "": {
+                "handlers": ["console"],
+                "level": "DEBUG",
+            },
+            "django": {
+                "handlers": ["console"],
+                "level": "DEBUG",
+            },
+        },
+    }
